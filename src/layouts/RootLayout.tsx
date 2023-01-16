@@ -1,6 +1,7 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import { reset } from "../features/counter/counterSlice";
+import { Header, Logo, Navbar, NavLinks, Main } from "./RootLayout.styled";
 
 const RootLayout = () => {
   const dispatch = useAppDispatch();
@@ -11,52 +12,20 @@ const RootLayout = () => {
 
   return (
     <>
-      <header
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          margin: "0 3rem",
-        }}
-      >
-        <Link to="/" style={{ textDecoration: "none" }} onClick={resetState}>
-          <h1>mGallery</h1>
-        </Link>
-        <nav
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <ul
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              listStyle: "none",
-              gap: "2rem",
-            }}
-          >
-            <li>
-              <NavLink to="/" style={{ textDecoration: "none" }}>
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/gallery"
-                style={{ textDecoration: "none" }}
-                onClick={resetState}
-              >
-                Gallery
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <main>
+      <Header>
+        <Logo to="/" onClick={resetState}>
+          mSquares
+        </Logo>
+        <Navbar>
+          <NavLinks to="/">Home</NavLinks>
+          <NavLinks to="/gallery" onClick={resetState}>
+            Search
+          </NavLinks>
+        </Navbar>
+      </Header>
+      <Main>
         <Outlet />
-      </main>
+      </Main>
     </>
   );
 };

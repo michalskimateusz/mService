@@ -1,4 +1,4 @@
-import React, { MouseEvent, useEffect, useRef } from "react";
+import React, { MouseEvent, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   dataState,
@@ -8,6 +8,24 @@ import {
   setImage,
 } from "../features/counter/counterSlice";
 import { RootState } from "../app/store";
+import {
+  Container,
+  ImageContainer,
+  Arrow,
+  ImageBig,
+  FormContainer,
+  WelcomeScreen,
+  Input,
+  SearchBtn,
+  Form,
+  Card,
+  CardTitle,
+  CardTitleContainer,
+  CardsContainer,
+  ScrollBtn,
+  CardsAndArrowsContainer,
+} from "./GalleryView.styled";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const GalleryView = () => {
   const dispatch = useAppDispatch();
@@ -24,91 +42,82 @@ const GalleryView = () => {
     dispatch(filter(searchValue));
   };
 
+  const scrollThumbnails = (value: number) => {
+    const cardsContainer = document.querySelector("#cards");
+    if (cardsContainer) {
+      cardsContainer.scrollBy({
+        top: 0,
+        left: value,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <Container>
       {filteredData.length > 0 ? (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          {imageIndex > 0 && (
-            <p
-              style={{ fontSize: "4rem", cursor: "pointer" }}
-              onClick={() => dispatch(prevImage())}
-            >
-              {"<"}
-            </p>
-          )}
-          <img src={filteredData[imageIndex].url} alt="" width={500} />
-          {imageIndex < filteredData.length - 1 && (
-            <p
-              style={{ fontSize: "4rem", cursor: "pointer" }}
-              onClick={() => dispatch(nextImage())}
-            >
-              {">"}
-            </p>
-          )}
-        </div>
+        <ImageContainer>
+          <Arrow
+            onClick={() => dispatch(prevImage())}
+            className={imageIndex < 1 ? "disabled" : ""}
+          >
+            <FaChevronLeft />
+          </Arrow>
+
+          <ImageBig
+            src={filteredData[imageIndex].url}
+            alt={filteredData[imageIndex].title}
+          />
+          <Arrow
+            onClick={() => dispatch(nextImage())}
+            className={imageIndex < filteredData.length - 1 ? "" : "disabled"}
+          >
+            <FaChevronRight />
+          </Arrow>
+        </ImageContainer>
       ) : (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <h2>Search through our database full of colorful squares</h2>
-        </div>
+        <WelcomeScreen>
+          Search through our database full of colorful squares
+        </WelcomeScreen>
       )}
 
-      <div style={{ margin: "2rem 0" }}>
-        <form onSubmit={handleSearch}>
-          <input type="text" ref={inputRef} autoFocus />
-          <button>Search</button>
-        </form>
-      </div>
-      <div>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(5, 150px)",
-            gap: "2rem",
-            width: "100%",
-            justifyContent: "center",
-            cursor: "pointer",
-          }}
-        >
-          {filteredData &&
-            filteredData?.map((item: dataState, index: number) => (
-              <div
-                key={item.id}
-                style={{
-                  width: "150px",
-                  borderRadius: "10px",
-                  overflow: "hidden",
-                  boxShadow: "9px 5px 24px -10px rgba(66, 68, 90, 0.25)",
-                }}
-                onClick={() => dispatch(setImage(index))}
-              >
-                <img src={item.thumbnailUrl} alt={item.title} />
-                <div style={{ padding: "0 0.5rem", fontSize: "0.8rem" }}>
-                  <p>{item.title}</p>
-                </div>
-              </div>
-            ))}
-        </div>
-      </div>
-    </div>
+      <FormContainer className={filteredData.length > 0 ? "expand" : ""}>
+        <Form onSubmit={handleSearch}>
+          <Input
+            type="text"
+            ref={inputRef}
+            autoFocus
+            placeholder="Type something"
+          />
+          <SearchBtn>search</SearchBtn>
+        </Form>
+      </FormContainer>
+
+      {filteredData.length > 0 && (
+        <CardsAndArrowsContainer>
+          <ScrollBtn className="left" onClick={() => scrollThumbnails(-200)}>
+            <FaChevronLeft />
+          </ScrollBtn>
+          <CardsContainer id="cards">
+            {filteredData &&
+              filteredData?.map((item: dataState, index: number) => (
+                <Card
+                  key={item.id}
+                  onClick={() => dispatch(setImage(index))}
+                  datatype={`url(${item.thumbnailUrl})`}
+                >
+                  <CardTitleContainer>
+                    <CardTitle>{item.title}</CardTitle>
+                  </CardTitleContainer>
+                </Card>
+              ))}
+          </CardsContainer>
+          <ScrollBtn className="right" onClick={() => scrollThumbnails(200)}>
+            <FaChevronRight />
+          </ScrollBtn>
+        </CardsAndArrowsContainer>
+      )}
+    </Container>
   );
 };
 
