@@ -167,16 +167,24 @@ export const Card = styled.div.attrs((props) => ({
 
   &:hover {
     scale: 102%;
+
+    & > div {
+      height: 10rem;
+      overflow: visible;
+      white-space: normal;
+    }
   }
 `;
 
-export const CardTitle = styled.p`
+export const CardTitleContainer = styled.div`
   color: white;
   font-size: 1.2rem;
-`;
-
-export const CardTitleContainer = styled.div`
-  height: 10rem;
+  height: 7rem;
+  width: 15rem;
   padding: 0 1rem;
   background: rgba(19, 19, 19, 0.25);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: all 0.2s;
 `;

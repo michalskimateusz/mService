@@ -19,7 +19,6 @@ import {
   SearchBtn,
   Form,
   Card,
-  CardTitle,
   CardTitleContainer,
   CardsContainer,
   ScrollBtn,
@@ -35,15 +34,17 @@ const GalleryView = () => {
     (state: RootState) => state.gallery
   );
 
+  const cardsContainer = document.querySelector("#cards");
+
   const handleSearch = (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
     const searchValue = inputRef?.current?.value;
     if (searchValue === "") return;
     dispatch(filter(searchValue));
+    cardsContainer?.scrollTo({ left: 0, behavior: "smooth" });
   };
 
   const scrollThumbnails = (value: number) => {
-    const cardsContainer = document.querySelector("#cards");
     if (cardsContainer) {
       cardsContainer.scrollBy({
         top: 0,
@@ -95,7 +96,7 @@ const GalleryView = () => {
 
       {filteredData.length > 0 && (
         <CardsAndArrowsContainer>
-          <ScrollBtn className="left" onClick={() => scrollThumbnails(-200)}>
+          <ScrollBtn className="left" onClick={() => scrollThumbnails(-300)}>
             <FaChevronLeft />
           </ScrollBtn>
           <CardsContainer id="cards">
@@ -106,13 +107,11 @@ const GalleryView = () => {
                   onClick={() => dispatch(setImage(index))}
                   datatype={`url(${item.thumbnailUrl})`}
                 >
-                  <CardTitleContainer>
-                    <CardTitle>{item.title}</CardTitle>
-                  </CardTitleContainer>
+                  <CardTitleContainer>{item.title}</CardTitleContainer>
                 </Card>
               ))}
           </CardsContainer>
-          <ScrollBtn className="right" onClick={() => scrollThumbnails(200)}>
+          <ScrollBtn className="right" onClick={() => scrollThumbnails(300)}>
             <FaChevronRight />
           </ScrollBtn>
         </CardsAndArrowsContainer>
