@@ -1,5 +1,14 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled, { keyframes } from 'styled-components'
+import { Link } from 'react-router-dom'
+
+export const animation = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
 
 export const Container = styled.div`
   height: calc(100vh - 6rem);
@@ -8,17 +17,21 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   gap: 4rem;
-`;
+  animation: ${animation} 1s ease-out;
+
+  &.animation {
+  }
+`
 
 export const Heading = styled.h1`
   font-size: 3rem;
-`;
+`
 
 export const Description = styled.p`
   margin: 2rem 0;
   font-size: 1.6rem;
   text-align: justify;
-`;
+`
 
 export const SearchBtn = styled(Link)`
   font-size: 3rem;
@@ -33,4 +46,4 @@ export const SearchBtn = styled(Link)`
   &.active {
     background: #850000;
   }
-`;
+`

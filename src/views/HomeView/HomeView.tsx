@@ -1,13 +1,14 @@
-import { useAppDispatch } from "../app/hooks";
-import { reset } from "../features/counter/counterSlice";
-import { Container, Heading, Description, SearchBtn } from "./HomeView.styled";
+import { useAppDispatch } from '../../store/hooks'
+import { reset } from '../../features/gallery/gallerySlice'
+import { Container, Heading, Description } from './HomeView.styled'
+import Button from '../../components/Button/Button'
 
 const HomeView = () => {
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
   const resetState = () => {
-    dispatch(reset());
-  };
+    dispatch(reset())
+  }
 
   return (
     <Container>
@@ -30,11 +31,14 @@ const HomeView = () => {
         iure nemo praesentium quibusdam ratione. Cum dolorum saepe tempora
         voluptates?
       </Description>
-      <SearchBtn to="/gallery" onClick={resetState}>
-        search squares
-      </SearchBtn>
+      <Button
+        to="/gallery"
+        isLink
+        title="search squares"
+        onClick={resetState}
+      />
     </Container>
-  );
-};
+  )
+}
 
-export default HomeView;
+export default HomeView

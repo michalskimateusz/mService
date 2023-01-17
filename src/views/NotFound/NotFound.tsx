@@ -4,7 +4,7 @@ const NotFound = () => {
       <h1>Sorry!</h1>
       <p>Something went wrong</p>
     </div>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound
