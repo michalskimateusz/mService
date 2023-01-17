@@ -24,31 +24,38 @@ const GalleryView = () => {
   const dispatch = useAppDispatch()
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const { filteredData, imageIndex } = useAppSelector(selectGallery)
+  const { data, filteredData, imageIndex } = useAppSelector(selectGallery)
+
+  const cardId: HTMLElement | null = document.getElementById(`${imageIndex}`)
+  const cardsContainer: Element | null = document.querySelector('#cards')
 
   useEffect(() => {
     dispatch(fetchData())
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const cardsContainer = document.querySelector('#cards')
+  useEffect(() => {
+    if (cardId) {
+      cardId.scrollIntoView({ behavior: 'smooth', inline: 'center' })
+    }
+  }, [cardId, imageIndex])
 
   const handleSearch = (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (!data) return
     const searchValue = inputRef?.current?.value
-    if (searchValue === '') return
     dispatch(filter(searchValue))
+
     cardsContainer?.scrollTo({ left: 0, behavior: 'smooth' })
   }
 
   const scrollThumbnails = (value: number) => {
-    if (cardsContainer) {
-      cardsContainer.scrollBy({
-        top: 0,
-        left: value,
-        behavior: 'smooth'
-      })
-    }
+    if (!cardsContainer) return
+    cardsContainer.scrollBy({
+      top: 0,
+      left: value,
+      behavior: 'smooth'
+    })
   }
 
   return (
@@ -101,6 +108,7 @@ const GalleryView = () => {
                 <Card
                   className={imageIndex === index ? 'active' : ''}
                   key={item.id}
+                  id={index.toString()}
                   background={`url(${item.thumbnailUrl})`}
                   text={item.title}
                   onClick={() => dispatch(setImage(index))}

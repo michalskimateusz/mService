@@ -6,6 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   padding-top: 8rem;
   animation: ${animation} 1s ease-out;
 `

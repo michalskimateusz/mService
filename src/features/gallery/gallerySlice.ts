@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../store/store'
 
 export type dataState = {
@@ -9,18 +9,28 @@ export type dataState = {
   thumbnailUrl: string
 }
 
+export type Error = {
+  status: boolean
+  message: string
+}
+
 export interface galleryState {
   data: dataState[]
   filteredData: dataState[]
   status: string
   imageIndex: number
+  error: Error
 }
 
 const initialState: galleryState = {
   data: [],
   filteredData: [],
   status: '',
-  imageIndex: 0
+  imageIndex: 0,
+  error: {
+    status: false,
+    message: ''
+  }
 }
 
 export const fetchData = createAsyncThunk('gallery/fetch', async (thunkAPI) => {
@@ -36,10 +46,26 @@ export const gallerySlice = createSlice({
     filter(state, { payload }) {
       state.filteredData = state.data.filter((el) => el.title.includes(payload))
       state.imageIndex = 0
+      if (state.filteredData.length === 0) {
+        state.error = {
+          status: true,
+          message: 'Nothing found, try something different'
+        }
+      } else {
+        state.error = {
+          status: false,
+          message: ''
+        }
+      }
     },
     reset(state) {
       state.filteredData = []
+      state.status = ''
       state.imageIndex = 0
+      state.error = {
+        status: false,
+        message: ''
+      }
     },
     nextImage(state) {
       if (state.imageIndex < state.filteredData.length - 1) {
@@ -53,6 +79,9 @@ export const gallerySlice = createSlice({
     },
     setImage(state, { payload }) {
       state.imageIndex = payload
+    },
+    setError(state, { payload }) {
+      state.error = payload
     }
   },
   extraReducers: (builder) => {
@@ -60,17 +89,21 @@ export const gallerySlice = createSlice({
       .addCase(fetchData.pending, (state) => {
         state.status = 'loading'
       })
-      .addCase(fetchData.fulfilled, (state, action) => {
+      .addCase(fetchData.fulfilled, (state, action: PayloadAction<[]>) => {
         state.status = 'idle'
         state.data = action.payload
       })
       .addCase(fetchData.rejected, (state) => {
         state.status = 'failed'
+        state.error = {
+          status: true,
+          message: 'Server error, please try again later'
+        }
       })
   }
 })
 
-export const { filter, reset, prevImage, nextImage, setImage } =
+export const { filter, reset, prevImage, nextImage, setImage, setError } =
   gallerySlice.actions
 
 export const selectGallery = (state: RootState) => state.gallery
