@@ -56,5 +56,9 @@ export const Navbar = styled.nav`
 // `;
 
 export const Main = styled.main`
-  padding: 0 5rem;
+  height: calc(100vh - 6rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10rem 5rem;
 `

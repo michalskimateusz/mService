@@ -9,16 +9,15 @@ import {
   setImage
 } from '../../features/gallery/gallerySlice'
 import { dataState } from '../../features/gallery/types'
+import { Container } from '../HomeView/HomeView.styled'
 import {
-  Container,
   ImageContainer,
   ImageBig,
   FormContainer,
-  WelcomeScreen,
   CardsContainer,
   CardsAndArrowsContainer
 } from './GalleryView.styled'
-import { Card, ControlArrow, SearchForm } from '../../components'
+import { Card, ControlArrow, SearchForm, Heading } from '../../components'
 
 const GalleryView = () => {
   const dispatch = useAppDispatch()
@@ -81,9 +80,7 @@ const GalleryView = () => {
           />
         </ImageContainer>
       ) : (
-        <WelcomeScreen>
-          Search through our database full of colorful squares
-        </WelcomeScreen>
+        <Heading title="Search through our database full of colorful squares" />
       )}
 
       <FormContainer className={filteredData.length > 0 ? 'expand' : ''}>

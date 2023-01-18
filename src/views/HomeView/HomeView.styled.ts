@@ -11,28 +11,25 @@ export const animation = keyframes`
 `
 
 export const Container = styled.div`
-  height: calc(100vh - 6rem);
+  //height: calc(100vh - 6rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 4rem;
   animation: ${animation} 1s ease-out;
-
-  &.animation {
-  }
 `
 
-export const Heading = styled.h1`
-  text-align: center;
-  font-size: 3rem;
-`
+// export const Heading = styled.h1`
+//   text-align: center;
+//   font-size: 3rem;
+// `
 
-export const Description = styled.p`
-  margin: 2rem 0;
-  font-size: 1.6rem;
-  text-align: justify;
-`
+// export const Description = styled.p`
+//   margin: 2rem 0;
+//   font-size: 1.6rem;
+//   text-align: justify;
+// `
 
 export const SearchBtn = styled(Link)`
   font-size: 3rem;

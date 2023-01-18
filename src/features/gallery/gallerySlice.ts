@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../store/store'
 import { galleryState } from './types'
+import api from '../../api/api'
 
 const initialState: galleryState = {
   data: [],
@@ -13,10 +14,9 @@ const initialState: galleryState = {
   }
 }
 
-export const fetchData = createAsyncThunk('gallery/fetch', async (thunkAPI) => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/photos')
-  const data = response.json()
-  return data
+export const fetchData = createAsyncThunk('gallery/fetch', async () => {
+  const response = await api.get('')
+  return response.data
 })
 
 export const gallerySlice = createSlice({
