@@ -10,7 +10,7 @@ const initialState: galleryState = {
   imageIndex: 0,
   error: {
     status: false,
-    message: ''
+    message: 'loading'
   }
 }
 

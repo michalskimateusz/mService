@@ -30,6 +30,7 @@ export const StyledButton = styled.button`
 export const StyledButtonLink = styled(Link)`
   font-size: 2rem;
   font-weight: 500;
+  text-align: center;
   color: white;
   background: #ae0000;
   padding: 1rem 5rem;

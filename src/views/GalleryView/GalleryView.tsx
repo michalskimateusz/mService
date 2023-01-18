@@ -18,13 +18,21 @@ import {
   CardsAndArrowsContainer,
   ImageAndSearchBarContainer
 } from './GalleryView.styled'
-import { Card, ControlArrow, SearchForm, Heading } from '../../components'
+import {
+  Card,
+  ControlArrow,
+  SearchForm,
+  Heading,
+  Loader
+} from '../../components'
+import NotFound from '../NotFound/NotFound'
 
 const GalleryView = () => {
   const dispatch = useAppDispatch()
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const { data, filteredData, imageIndex } = useAppSelector(selectGallery)
+  const { data, filteredData, imageIndex, status } =
+    useAppSelector(selectGallery)
 
   const cardId: HTMLElement | null = document.getElementById(`${imageIndex}`)
   const cardsContainer: Element | null = document.querySelector('#cards')
@@ -57,6 +65,14 @@ const GalleryView = () => {
       left: value,
       behavior: 'smooth'
     })
+  }
+
+  if (status === 'loading') {
+    return <Loader />
+  }
+
+  if (status === 'failed') {
+    return <NotFound />
   }
 
   return (

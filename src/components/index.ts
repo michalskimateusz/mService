@@ -6,6 +6,7 @@ import Navlink from './NavLink/Navlink'
 import SearchForm from './SearchForm/SearchForm'
 import Heading from './Heading/Heading'
 import Description from './Description/Description'
+import Loader from './Loader/Loader'
 
 export {
   Button,
@@ -15,5 +16,6 @@ export {
   ControlArrow,
   SearchForm,
   Heading,
-  Description
+  Description,
+  Loader
 }
