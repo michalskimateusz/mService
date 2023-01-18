@@ -1,9 +1,9 @@
-export interface IControlArrowStyled {
+export interface IControlArrowStyledProps {
   size: string
   direction: string
 }
 
-export interface IControlArrow {
+export interface IControlArrowProps {
   isSmall?: boolean
   size: string
   direction: 'left' | 'right'

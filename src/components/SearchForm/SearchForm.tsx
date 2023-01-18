@@ -1,11 +1,11 @@
 import { Form, Input, Notification } from './SearchForm.styled'
 import React, { FC } from 'react'
-import Button from '../Button/Button'
+import ButtonComponent from '../ButtonComponent/ButtonComponent'
 import { useAppSelector } from '../../store/hooks'
-import { selectGallery } from '../../features/gallery/gallerySlice'
-import { ISearchForm } from './types'
+import { selectGallery } from '../../store/gallerySlice'
+import { ISearchFormProps } from './types'
 
-const SearchForm: FC<ISearchForm> = ({ onSubmit, placeholder, input }) => {
+const SearchForm: FC<ISearchFormProps> = ({ onSubmit, placeholder, input }) => {
   const { error } = useAppSelector(selectGallery)
   return (
     <>
@@ -17,7 +17,7 @@ const SearchForm: FC<ISearchForm> = ({ onSubmit, placeholder, input }) => {
           autoFocus
           placeholder={placeholder}
         />
-        <Button
+        <ButtonComponent
           to=""
           title="search"
         />

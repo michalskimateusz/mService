@@ -1,23 +1,24 @@
 import { Outlet } from 'react-router-dom'
 import { Header, Navbar, Main } from './RootLayout.styled'
-import { Logo, Navlink } from '../../components'
+import { LogoComponent, NavLinkComponent } from '../../components'
+import { URL_PATHS } from '../../constants/urlPaths'
 
 const RootLayout = () => {
   return (
     <>
       <Header>
-        <Logo
-          to="/"
+        <LogoComponent
+          to={URL_PATHS.HOME}
           title="mSquares"
         />
         <Navbar>
-          <Navlink
+          <NavLinkComponent
             title="Home"
-            to="/"
+            to={URL_PATHS.HOME}
           />
-          <Navlink
+          <NavLinkComponent
             title="Search"
-            to="/gallery"
+            to={URL_PATHS.GALLERY}
           />
         </Navbar>
       </Header>

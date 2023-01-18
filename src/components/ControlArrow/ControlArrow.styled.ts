@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { IControlArrowStyled } from './types'
+import { IControlArrowStyledProps } from './types'
 
-export const ControlArrowStyled = styled.span<IControlArrowStyled>`
+export const ControlArrowStyled = styled.span<IControlArrowStyledProps>`
   display: flex;
   justify-content: center;
   height: 90%;

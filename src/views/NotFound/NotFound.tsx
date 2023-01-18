@@ -1,12 +1,17 @@
 import { Container } from './NotFound.styled'
-import { Heading, Description, Button } from '../../components'
+import {
+  HeadingComponent,
+  DescriptionComponent,
+  ButtonComponent
+} from '../../components'
+import { FC } from 'react'
 
-const NotFound = () => {
+const NotFound: FC = () => {
   return (
     <Container>
-      <Heading title="Sorry!" />
-      <Description>Something went wrong</Description>
-      <Button
+      <HeadingComponent title="Sorry!" />
+      <DescriptionComponent>Something went wrong</DescriptionComponent>
+      <ButtonComponent
         title="Go back to main page"
         to="/"
         isLink

@@ -1,21 +1,21 @@
-import Button from './Button/Button'
-import Card from './Card/Card'
+import ButtonComponent from './ButtonComponent/ButtonComponent'
+import CardComponent from './CardComponent/CardComponent'
 import ControlArrow from './ControlArrow/ControlArrow'
-import Logo from './Logo/Logo'
-import Navlink from './NavLink/Navlink'
+import LogoComponent from './LogoComponent/LogoComponent'
+import NavLinkComponent from './NavLinkComponent/NavLinkComponent'
 import SearchForm from './SearchForm/SearchForm'
-import Heading from './Heading/Heading'
-import Description from './Description/Description'
-import Loader from './Loader/Loader'
+import HeadingComponent from './HeadingComponent/HeadingComponent'
+import DescriptionComponent from './DescriptionComponent/DescriptionComponent'
+import LoaderComponent from './LoaderComponent/LoaderComponent'
 
 export {
-  Button,
-  Navlink,
-  Card,
-  Logo,
+  ButtonComponent,
+  NavLinkComponent,
+  CardComponent,
+  LogoComponent,
   ControlArrow,
   SearchForm,
-  Heading,
-  Description,
-  Loader
+  HeadingComponent,
+  DescriptionComponent,
+  LoaderComponent
 }

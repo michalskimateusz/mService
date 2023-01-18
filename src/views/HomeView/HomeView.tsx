@@ -1,10 +1,11 @@
 import { useAppDispatch } from '../../store/hooks'
-import { reset } from '../../features/gallery/gallerySlice'
+import { reset } from '../../store/gallerySlice'
 import { Container } from './HomeView.styled'
-import { Button, Description } from '../../components/'
-import { Heading } from '../../components'
+import { ButtonComponent, DescriptionComponent } from '../../components/'
+import { HeadingComponent } from '../../components'
+import { FC } from 'react'
 
-const HomeView = () => {
+const HomeView: FC = () => {
   const dispatch = useAppDispatch()
 
   const resetState = () => {
@@ -13,13 +14,13 @@ const HomeView = () => {
 
   return (
     <Container>
-      <Heading title="Welcome to mSquares gallery" />
-      <Description>
+      <HeadingComponent title="Welcome to mSquares gallery" />
+      <DescriptionComponent>
         We invite you to check out our big collection of colorful squares.
         <br />
         Each square have unique name taken from 'lorem ipsum'.
-      </Description>
-      <Button
+      </DescriptionComponent>
+      <ButtonComponent
         to="/gallery"
         isLink
         title="search squares"

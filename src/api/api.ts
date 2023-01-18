@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+// usually in .env
 const baseUrl: string = 'https://jsonplaceholder.typicode.com/photos'
 
 const api = axios.create({

@@ -1,14 +1,13 @@
-import React, { MouseEvent, useEffect, useRef } from 'react'
+import { FC, MouseEvent, useEffect, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import {
-  fetchData,
   filter,
   nextImage,
   prevImage,
   selectGallery,
   setImage
-} from '../../features/gallery/gallerySlice'
-import { dataState } from '../../features/gallery/types'
+} from '../../store/gallerySlice'
+import { IPhotos } from '../../store/gallerySlice/types'
 import { Container } from '../HomeView/HomeView.styled'
 import {
   ImageContainer,
@@ -19,26 +18,27 @@ import {
   ImageAndSearchBarContainer
 } from './GalleryView.styled'
 import {
-  Card,
+  CardComponent,
   ControlArrow,
   SearchForm,
-  Heading,
-  Loader
+  HeadingComponent,
+  LoaderComponent
 } from '../../components'
 import NotFound from '../NotFound/NotFound'
+import { fetchPhotos } from '../../store/gallerySlice/thunks/fetchPhotos'
 
-const GalleryView = () => {
+const GalleryView: FC = () => {
   const dispatch = useAppDispatch()
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const { filteredData, imageIndex, status } = useAppSelector(selectGallery)
+  const { filteredPhotos, imageIndex, status } = useAppSelector(selectGallery)
 
   const cardId: HTMLElement | null = document.getElementById(`${imageIndex}`)
-  const cardsContainer: Element | null = document.querySelector('#cards')
+  const cardsContainer: Element | null = document.getElementById('cards')
 
   useEffect(() => {
     if (status !== 'idle' && status !== 'loading') {
-      dispatch(fetchData())
+      dispatch(fetchPhotos())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status])
@@ -47,7 +47,7 @@ const GalleryView = () => {
     if (cardId) {
       cardId.scrollIntoView({ behavior: 'smooth', inline: 'center' })
     }
-  }, [cardId, imageIndex])
+  }, [cardId, imageIndex, filteredPhotos])
 
   const handleSearch = (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -66,7 +66,7 @@ const GalleryView = () => {
   }
 
   if (status === 'loading') {
-    return <Loader />
+    return <LoaderComponent />
   }
 
   if (status === 'failed') {
@@ -76,7 +76,7 @@ const GalleryView = () => {
   return (
     <Container>
       <ImageAndSearchBarContainer>
-        {filteredData.length > 0 ? (
+        {filteredPhotos.length > 0 ? (
           <ImageContainer>
             <ControlArrow
               onClick={() => dispatch(prevImage())}
@@ -84,8 +84,8 @@ const GalleryView = () => {
               direction="left"
             />
             <ImageBig
-              src={filteredData[imageIndex].url}
-              alt={filteredData[imageIndex].title}
+              src={filteredPhotos[imageIndex].url}
+              alt={filteredPhotos[imageIndex].title}
             />
             <ControlArrow
               onClick={() => dispatch(nextImage())}
@@ -94,10 +94,10 @@ const GalleryView = () => {
             />
           </ImageContainer>
         ) : (
-          <Heading title="Search through our database full of colorful squares" />
+          <HeadingComponent title="Search through our database full of colorful squares" />
         )}
 
-        <FormContainer className={filteredData.length > 0 ? 'expand' : ''}>
+        <FormContainer className={filteredPhotos.length > 0 ? 'expand' : ''}>
           <SearchForm
             onSubmit={handleSearch}
             placeholder="Type something"
@@ -106,7 +106,7 @@ const GalleryView = () => {
         </FormContainer>
       </ImageAndSearchBarContainer>
 
-      {filteredData.length > 0 && (
+      {filteredPhotos.length > 0 && (
         <CardsAndArrowsContainer>
           <ControlArrow
             className="left"
@@ -116,9 +116,9 @@ const GalleryView = () => {
             isSmall
           />
           <CardsContainer id="cards">
-            {filteredData &&
-              filteredData?.map((item: dataState, index: number) => (
-                <Card
+            {filteredPhotos &&
+              filteredPhotos?.map((item: IPhotos, index: number) => (
+                <CardComponent
                   className={imageIndex === index ? 'active' : ''}
                   key={item.id}
                   id={index.toString()}
