@@ -1,26 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../store/store'
-
-export type dataState = {
-  albumId: number
-  id: number
-  title: string
-  url: string
-  thumbnailUrl: string
-}
-
-export type Error = {
-  status: boolean
-  message: string
-}
-
-export interface galleryState {
-  data: dataState[]
-  filteredData: dataState[]
-  status: string
-  imageIndex: number
-  error: Error
-}
+import { galleryState } from './types'
 
 const initialState: galleryState = {
   data: [],
@@ -49,7 +29,7 @@ export const gallerySlice = createSlice({
       if (state.filteredData.length === 0) {
         state.error = {
           status: true,
-          message: 'Nothing found, try something different'
+          message: 'Sorry, no squares found. Try something different.'
         }
       } else {
         state.error = {

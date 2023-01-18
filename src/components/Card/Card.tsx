@@ -1,14 +1,7 @@
 import { CardStyled } from './Card.styled'
 import React, { FC } from 'react'
 import CardTitle from './CardTitle'
-
-interface ICard {
-  onClick: () => void
-  background: string
-  text: string
-  className: string
-  id: string
-}
+import { ICard } from './types'
 
 const Card: FC<ICard> = ({ onClick, background, text, className, id }) => {
   return (

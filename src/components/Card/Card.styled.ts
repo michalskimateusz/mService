@@ -1,8 +1,6 @@
 import styled from 'styled-components'
+import { ICardStyled } from './types'
 
-interface ICardStyled {
-  background: string
-}
 export const CardStyled = styled.div.attrs<ICardStyled>((props) => ({
   style: {
     backgroundImage: props.background
@@ -17,13 +15,11 @@ export const CardStyled = styled.div.attrs<ICardStyled>((props) => ({
   transition: all 0.2s;
   background-size: contain;
 
+  &:hover,
   &.active {
+    scale: 102%;
     box-shadow: 0 6px 17px -8px rgba(0, 0, 0, 0.5);
     transform: translateY(-0.5rem);
-  }
-
-  &:hover {
-    scale: 102%;
 
     & > div {
       height: 10rem;

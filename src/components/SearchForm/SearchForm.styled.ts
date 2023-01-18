@@ -1,7 +1,23 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const animation = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  100% {  
+    opacity: 1; 
+    transform: translateY(0);
+  }
+`
 
 export const Form = styled.form`
   position: relative;
+  z-index: 2;
 `
 
 export const Input = styled.input`
@@ -21,4 +37,13 @@ export const Input = styled.input`
   &:focus {
     outline: none;
   }
+`
+
+export const Notification = styled.div`
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 1rem;
+  color: #ae0000;
+  animation: ${animation} 0.5s ease-in;
 `

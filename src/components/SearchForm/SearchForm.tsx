@@ -1,14 +1,9 @@
-import { Form, Input } from './SearchForm.styled'
-import React, { FC, MouseEvent } from 'react'
+import { Form, Input, Notification } from './SearchForm.styled'
+import React, { FC } from 'react'
 import Button from '../Button/Button'
 import { useAppSelector } from '../../store/hooks'
 import { selectGallery } from '../../features/gallery/gallerySlice'
-
-interface ISearchForm {
-  onSubmit: (e: MouseEvent<HTMLFormElement>) => void
-  placeholder: string
-  input: React.RefObject<HTMLInputElement>
-}
+import { ISearchForm } from './types'
 
 const SearchForm: FC<ISearchForm> = ({ onSubmit, placeholder, input }) => {
   const { error } = useAppSelector(selectGallery)
@@ -27,7 +22,7 @@ const SearchForm: FC<ISearchForm> = ({ onSubmit, placeholder, input }) => {
           title="search"
         />
       </Form>
-      {error.status && <p>{error.message}</p>}
+      {error.status && <Notification>{error.message}</Notification>}
     </>
   )
 }

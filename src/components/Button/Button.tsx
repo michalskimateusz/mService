@@ -1,12 +1,6 @@
 import { FC } from 'react'
 import { StyledButton, StyledButtonLink } from './Button.styled'
-
-interface IButton {
-  title: string
-  onClick?: () => void
-  to: string
-  isLink?: boolean
-}
+import { IButton } from './types'
 
 const Button: FC<IButton> = ({ title, onClick, isLink, to }) => {
   if (isLink) {

@@ -4,14 +4,7 @@ import {
 } from './ControlArrow.styled'
 import { FC } from 'react'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
-
-interface IControlArrow {
-  isSmall?: boolean
-  size: string
-  direction: 'left' | 'right'
-  onClick: () => void
-  className?: string
-}
+import { IControlArrow } from './types'
 
 const ControlArrow: FC<IControlArrow> = ({
   size,

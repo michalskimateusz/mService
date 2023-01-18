@@ -1,7 +1,6 @@
 import React, { MouseEvent, useEffect, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import {
-  dataState,
   fetchData,
   filter,
   nextImage,
@@ -9,6 +8,7 @@ import {
   selectGallery,
   setImage
 } from '../../features/gallery/gallerySlice'
+import { dataState } from '../../features/gallery/types'
 import {
   Container,
   ImageContainer,
@@ -31,6 +31,7 @@ const GalleryView = () => {
 
   useEffect(() => {
     dispatch(fetchData())
+    if (!data) return
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -42,7 +43,7 @@ const GalleryView = () => {
 
   const handleSearch = (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!data) return
+
     const searchValue = inputRef?.current?.value
     dispatch(filter(searchValue))
 
@@ -99,7 +100,7 @@ const GalleryView = () => {
             className="left"
             size="4rem"
             direction="left"
-            onClick={() => scrollThumbnails(-300)}
+            onClick={() => scrollThumbnails(-500)}
             isSmall
           />
           <CardsContainer id="cards">
@@ -119,7 +120,7 @@ const GalleryView = () => {
             className="right"
             size="4rem"
             direction="right"
-            onClick={() => scrollThumbnails(300)}
+            onClick={() => scrollThumbnails(500)}
             isSmall
           />
         </CardsAndArrowsContainer>

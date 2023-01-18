@@ -2,11 +2,7 @@ import { LogoStyled } from './Logo.styled'
 import { useAppDispatch } from '../../store/hooks'
 import { reset } from '../../features/gallery/gallerySlice'
 import { FC } from 'react'
-
-interface ILogo {
-  title: string
-  to: string
-}
+import { ILogo } from './types'
 
 const Logo: FC<ILogo> = ({ title, to }) => {
   const dispatch = useAppDispatch()

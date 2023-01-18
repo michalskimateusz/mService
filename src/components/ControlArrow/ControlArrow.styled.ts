@@ -1,9 +1,5 @@
 import styled from 'styled-components'
-
-interface IControlArrowStyled {
-  size: string
-  direction: string
-}
+import { IControlArrowStyled } from './types'
 
 export const ControlArrowStyled = styled.span<IControlArrowStyled>`
   display: flex;

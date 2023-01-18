@@ -2,11 +2,7 @@ import { NavlinkStyled } from './Navlink.styled'
 import { FC } from 'react'
 import { useAppDispatch } from '../../store/hooks'
 import { reset } from '../../features/gallery/gallerySlice'
-
-interface INavlink {
-  title: string
-  to: string
-}
+import { INavlink } from './types'
 
 const Navlink: FC<INavlink> = ({ title, to }) => {
   const dispatch = useAppDispatch()

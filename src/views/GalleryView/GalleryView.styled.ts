@@ -129,12 +129,12 @@ export const CardsContainer = styled.div`
 
   ::-webkit-scrollbar-track {
     background: #d9d9d9;
+    border-radius: 1rem;
   }
 
   ::-webkit-scrollbar-thumb {
     background-color: #ae0000;
     border-radius: 1rem;
-    border: none;
   }
 `
 
