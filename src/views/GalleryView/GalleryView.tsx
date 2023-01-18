@@ -31,17 +31,17 @@ const GalleryView = () => {
   const dispatch = useAppDispatch()
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const { data, filteredData, imageIndex, status } =
-    useAppSelector(selectGallery)
+  const { filteredData, imageIndex, status } = useAppSelector(selectGallery)
 
   const cardId: HTMLElement | null = document.getElementById(`${imageIndex}`)
   const cardsContainer: Element | null = document.querySelector('#cards')
 
   useEffect(() => {
-    dispatch(fetchData())
-    if (!data) return
+    if (status !== 'idle' && status !== 'loading') {
+      dispatch(fetchData())
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [status])
 
   useEffect(() => {
     if (cardId) {
@@ -51,10 +51,8 @@ const GalleryView = () => {
 
   const handleSearch = (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
-
     const searchValue = inputRef?.current?.value
     dispatch(filter(searchValue))
-
     cardsContainer?.scrollTo({ left: 0, behavior: 'smooth' })
   }
 

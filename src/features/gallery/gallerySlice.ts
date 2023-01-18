@@ -40,7 +40,6 @@ export const gallerySlice = createSlice({
     },
     reset(state) {
       state.filteredData = []
-      state.status = ''
       state.imageIndex = 0
       state.error = {
         status: false,
