@@ -68,7 +68,6 @@ const GalleryView = () => {
               onClick={() => dispatch(prevImage())}
               size="3rem"
               direction="left"
-              className={imageIndex < 1 ? 'disabled' : ''}
             />
             <ImageBig
               src={filteredData[imageIndex].url}
@@ -78,7 +77,6 @@ const GalleryView = () => {
               onClick={() => dispatch(nextImage())}
               size="5rem"
               direction="right"
-              className={imageIndex < filteredData.length - 1 ? '' : 'disabled'}
             />
           </ImageContainer>
         ) : (

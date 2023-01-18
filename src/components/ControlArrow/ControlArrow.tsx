@@ -19,7 +19,6 @@ const ControlArrow: FC<IControlArrow> = ({
         size={size}
         direction={direction}
         onClick={onClick}
-        className={className}
       >
         {direction === 'left' && <FaChevronLeft />}
         {direction === 'right' && <FaChevronRight />}

@@ -48,13 +48,15 @@ export const gallerySlice = createSlice({
       }
     },
     nextImage(state) {
-      if (state.imageIndex < state.filteredData.length - 1) {
-        state.imageIndex += 1
+      state.imageIndex += 1
+      if (state.imageIndex > state.filteredData.length - 1) {
+        state.imageIndex = 0
       }
     },
     prevImage(state) {
-      if (state.imageIndex > 0) {
-        state.imageIndex -= 1
+      state.imageIndex -= 1
+      if (state.imageIndex < 0) {
+        state.imageIndex = state.filteredData.length - 1
       }
     },
     setImage(state, { payload }) {

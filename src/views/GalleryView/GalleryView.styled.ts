@@ -21,6 +21,7 @@ export const ImageBig = styled.img`
 
 export const FormContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 3rem 0;
@@ -61,6 +62,7 @@ export const CardsContainer = styled.div`
     display: none;
     @media screen and (min-width: 425px) {
       display: block;
+      z-index: 3;
       width: 1.5rem;
     }
   }

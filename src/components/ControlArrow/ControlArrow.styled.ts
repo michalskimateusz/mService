@@ -28,16 +28,12 @@ export const ControlArrowStyled = styled.span<IControlArrowStyled>`
   &:active {
     transform: scale(90%);
   }
-
-  &.disabled {
-    color: #d7d7d7;
-    cursor: not-allowed;
-  }
 `
 
 export const ControlArrowSmallStyled = styled(ControlArrowStyled)`
   position: absolute;
   z-index: 2;
+  height: 85%;
 
   &.left {
     left: 0;
