@@ -8,8 +8,8 @@ export const CardStyled = styled.div.attrs<ICardStyled>((props) => ({
 }))<ICardStyled>`
   display: flex;
   flex-direction: column-reverse;
-  width: 15rem;
-  height: 20rem;
+  width: 13rem;
+  height: 18rem;
   border-radius: 1rem;
   overflow: hidden;
   transition: all 0.2s;

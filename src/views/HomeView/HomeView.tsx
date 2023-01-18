@@ -13,18 +13,11 @@ const HomeView = () => {
 
   return (
     <Container>
-      <Heading
-        title="Welcome to our lorem ipsum database of colorful squares.
-"
-      />
+      <Heading title="Welcome to mSquares gallery" />
       <Description>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-        aliquam commodi consequatur distinctio doloremque et magni nesciunt
-        nobis non officia optio provident quas quos sapiente similique unde
-        velit vero, voluptates? Cumque deserunt doloremque error et ex, incidunt
-        modi molestiae odit placeat ratione saepe sed veniam, voluptate!
-        Assumenda aut delectus id iure nemo praesentium quibusdam ratione. Cum
-        dolorum saepe tempora voluptates?
+        We invite you to check out our big collection of colorful squares.
+        <br />
+        Each square have unique name taken from 'lorem ipsum'.
       </Description>
       <Button
         to="/gallery"

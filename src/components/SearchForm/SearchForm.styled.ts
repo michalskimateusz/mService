@@ -21,7 +21,7 @@ export const Form = styled.form`
 `
 
 export const Input = styled.input`
-  width: 40rem;
+  width: 25rem;
   height: 4rem;
   font-size: 2rem;
   padding: 0 2rem;
@@ -36,6 +36,12 @@ export const Input = styled.input`
 
   &:focus {
     outline: none;
+  }
+
+  @media screen and (min-width: 600px) {
+    width: 40rem;
+    height: 4rem;
+    font-size: 2rem;
   }
 `
 

@@ -15,7 +15,8 @@ import {
   ImageBig,
   FormContainer,
   CardsContainer,
-  CardsAndArrowsContainer
+  CardsAndArrowsContainer,
+  ImageAndSearchBarContainer
 } from './GalleryView.styled'
 import { Card, ControlArrow, SearchForm, Heading } from '../../components'
 
@@ -60,36 +61,38 @@ const GalleryView = () => {
 
   return (
     <Container>
-      {filteredData.length > 0 ? (
-        <ImageContainer>
-          <ControlArrow
-            onClick={() => dispatch(prevImage())}
-            size="5rem"
-            direction="left"
-            className={imageIndex < 1 ? 'disabled' : ''}
-          />
-          <ImageBig
-            src={filteredData[imageIndex].url}
-            alt={filteredData[imageIndex].title}
-          />
-          <ControlArrow
-            onClick={() => dispatch(nextImage())}
-            size="5rem"
-            direction="right"
-            className={imageIndex < filteredData.length - 1 ? '' : 'disabled'}
-          />
-        </ImageContainer>
-      ) : (
-        <Heading title="Search through our database full of colorful squares" />
-      )}
+      <ImageAndSearchBarContainer>
+        {filteredData.length > 0 ? (
+          <ImageContainer>
+            <ControlArrow
+              onClick={() => dispatch(prevImage())}
+              size="3rem"
+              direction="left"
+              className={imageIndex < 1 ? 'disabled' : ''}
+            />
+            <ImageBig
+              src={filteredData[imageIndex].url}
+              alt={filteredData[imageIndex].title}
+            />
+            <ControlArrow
+              onClick={() => dispatch(nextImage())}
+              size="5rem"
+              direction="right"
+              className={imageIndex < filteredData.length - 1 ? '' : 'disabled'}
+            />
+          </ImageContainer>
+        ) : (
+          <Heading title="Search through our database full of colorful squares" />
+        )}
 
-      <FormContainer className={filteredData.length > 0 ? 'expand' : ''}>
-        <SearchForm
-          onSubmit={handleSearch}
-          placeholder="Type something"
-          input={inputRef}
-        />
-      </FormContainer>
+        <FormContainer className={filteredData.length > 0 ? 'expand' : ''}>
+          <SearchForm
+            onSubmit={handleSearch}
+            placeholder="Type something"
+            input={inputRef}
+          />
+        </FormContainer>
+      </ImageAndSearchBarContainer>
 
       {filteredData.length > 0 && (
         <CardsAndArrowsContainer>

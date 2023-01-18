@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Header = styled.header`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: stretch;
   padding: 0 5rem;
   height: 5rem;
@@ -11,54 +11,34 @@ export const Header = styled.header`
   position: fixed;
   box-shadow: 0 5px 24px -10px rgba(0, 0, 0, 0.5);
   z-index: 2;
-`
 
-// export const Logo = styled(Link)`
-//   font-size: 3rem;
-//   font-weight: bold;
-//   color: white;
-//   background-image: url("${logo}");
-//   background-size: cover;
-//   padding: 0 1rem;
-// `;
+  @media screen and (min-width: 768px) {
+    justify-content: space-between;
+  }
+`
 
 export const Navbar = styled.nav`
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.6rem;
-  gap: 2rem;
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    gap: 2rem;
+  }
 `
 
-// export const NavLinks = styled(NavLink)`
-//   font-size: 2rem;
-//   font-weight: 500;
-//   color: #636565;
-//   transition: all 0.2s ease-in;
-//
-//   &.active {
-//     color: #868989;
-//   }
-//
-//   &:after {
-//     display: block;
-//     content: "";
-//     border-bottom: 3px solid #e41609;
-//     opacity: 0;
-//     transition: opacity 0.3s;
-//   }
-//
-//   &:hover:after,
-//   &.active:after {
-//     opacity: 1;
-//   }
-// `;
-
 export const Main = styled.main`
-  height: calc(100vh - 6rem);
+  height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10rem 5rem;
+  padding: 6rem 2rem 0;
+
+  @media screen and (min-width: 768px) {
+    //padding: 0 5rem;
+  }
 `
