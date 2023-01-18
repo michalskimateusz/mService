@@ -4,6 +4,7 @@ import { Container } from './HomeView.styled'
 import { ButtonComponent, DescriptionComponent } from '../../components/'
 import { HeadingComponent } from '../../components'
 import { FC } from 'react'
+import { URL_PATHS } from '../../constants/urlPaths'
 
 const HomeView: FC = () => {
   const dispatch = useAppDispatch()
@@ -21,7 +22,7 @@ const HomeView: FC = () => {
         Each square have unique name taken from 'lorem ipsum'.
       </DescriptionComponent>
       <ButtonComponent
-        to="/gallery"
+        to={URL_PATHS.GALLERY}
         isLink
         title="search squares"
         onClick={resetState}

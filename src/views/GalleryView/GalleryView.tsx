@@ -7,7 +7,7 @@ import {
   selectGallery,
   setImage
 } from '../../store/gallerySlice'
-import { IPhotos } from '../../store/gallerySlice/types'
+import { IPhoto } from '../../store/gallerySlice/types'
 import { Container } from '../HomeView/HomeView.styled'
 import {
   ImageContainer,
@@ -117,7 +117,7 @@ const GalleryView: FC = () => {
           />
           <CardsContainer id="cards">
             {filteredPhotos &&
-              filteredPhotos?.map((item: IPhotos, index: number) => (
+              filteredPhotos?.map((item: IPhoto, index: number) => (
                 <CardComponent
                   className={imageIndex === index ? 'active' : ''}
                   key={item.id}

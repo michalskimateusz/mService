@@ -1,4 +1,4 @@
-export interface IPhotos {
+export interface IPhoto {
   albumId: number
   id: number
   title: string
@@ -12,8 +12,8 @@ export interface Error {
 }
 
 export interface IGalleryState {
-  photos: IPhotos[]
-  filteredPhotos: IPhotos[]
+  photos: IPhoto[]
+  filteredPhotos: IPhoto[]
   status: string
   imageIndex: number
   error: Error

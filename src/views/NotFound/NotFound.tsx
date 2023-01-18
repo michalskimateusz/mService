@@ -5,6 +5,7 @@ import {
   ButtonComponent
 } from '../../components'
 import { FC } from 'react'
+import { URL_PATHS } from '../../constants/urlPaths'
 
 const NotFound: FC = () => {
   return (
@@ -13,7 +14,7 @@ const NotFound: FC = () => {
       <DescriptionComponent>Something went wrong</DescriptionComponent>
       <ButtonComponent
         title="Go back to main page"
-        to="/"
+        to={URL_PATHS.HOME}
         isLink
       />
     </Container>
