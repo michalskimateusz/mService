@@ -30,11 +30,11 @@ import { fetchPhotos } from '../../store/gallerySlice/thunks/fetchPhotos'
 const GalleryView: FC = () => {
   const dispatch = useAppDispatch()
   const inputRef = useRef<HTMLInputElement>(null)
+  const cardsContainerRef = useRef<HTMLDivElement>(null)
 
   const { filteredPhotos, imageIndex, status } = useAppSelector(selectGallery)
 
   const cardId: HTMLElement | null = document.getElementById(`${imageIndex}`)
-  const cardsContainer: Element | null = document.getElementById('cards')
 
   useEffect(() => {
     if (status !== 'idle' && status !== 'loading') {
@@ -53,16 +53,19 @@ const GalleryView: FC = () => {
     e.preventDefault()
     const searchValue = inputRef?.current?.value
     dispatch(filter(searchValue))
-    cardsContainer?.scrollTo({ left: 0, behavior: 'smooth' })
+    if (cardsContainerRef.current) {
+      cardsContainerRef.current.scrollTo({ left: 0, behavior: 'smooth' })
+    }
   }
 
   const scrollThumbnails = (value: number) => {
-    if (!cardsContainer) return
-    cardsContainer.scrollBy({
-      top: 0,
-      left: value,
-      behavior: 'smooth'
-    })
+    if (cardsContainerRef.current) {
+      cardsContainerRef.current.scrollBy({
+        top: 0,
+        left: value,
+        behavior: 'smooth'
+      })
+    }
   }
 
   if (status === 'loading') {
@@ -115,7 +118,7 @@ const GalleryView: FC = () => {
             onClick={() => scrollThumbnails(-500)}
             isSmall
           />
-          <CardsContainer id="cards">
+          <CardsContainer ref={cardsContainerRef}>
             {filteredPhotos &&
               filteredPhotos?.map((item: IPhoto, index: number) => (
                 <CardComponent
